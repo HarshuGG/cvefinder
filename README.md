@@ -18,8 +18,8 @@ Local, **non-destructive** reconnaissance for authorized bug-bounty targets. It 
 The project runs inside a Kali Linux VM with Python 3.10+. Copy this directory into the VM (shared folder, `scp`, or a Git checkout), then run:
 
 ```bash
-git clone <your-repository-url> bounty-surface
-cd bounty-surface
+git clone https://github.com/HarshuGG/cvefinder.git
+cd cvefinder
 chmod +x install.sh bounty-surface
 ./install.sh
 cp config/scope.example.json config/my-program.json
