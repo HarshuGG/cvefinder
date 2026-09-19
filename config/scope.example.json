@@ -1,0 +1,7 @@
+{
+  "program": "example-authorized-program",
+  "allowed_domains": ["example.com", "*.example.com"],
+  "excluded_domains": ["admin.example.com", "*.internal.example.com"],
+  "allowed_schemes": ["https", "http"],
+  "rate_limit_seconds": 0.4
+}
