@@ -66,6 +66,27 @@ Every initial URL, discovered JavaScript URL, and extracted endpoint is checked 
 
 This is an attack-surface mapper, not an automated vulnerability scanner. It performs bounded GET requests only, does not submit forms, and does not attempt credentials, payloads, bypasses, or exploitation.
 
+## Automotive lab analyzer
+
+The companion `auto-surface` command analyzes **captured** CAN/UDS logs and optional local firmware metadata. It is offline and passive: it never opens a CAN interface and never transmits frames or diagnostic commands. Use only simulator, bench, or explicitly authorized lab data.
+
+Supported inputs include candump text, simple `ID [length] bytes` text, CSV, and JSONL. It reports ECU/arbitration IDs, payload-length changes, recognized UDS service observations, parser warnings, and optional candidate matches from a local KEV catalog.
+
+```bash
+./auto-surface --can-log captures/session.log
+./auto-surface --can-log captures/session.log --firmware-info firmware.json --kev-feed known_exploited_vulnerabilities.json
+```
+
+Example `firmware.json`:
+
+```json
+[
+  {"product": "Example ECU", "version": "1.2.3", "evidence": "bench firmware manifest"}
+]
+```
+
+The report is written to `runs-auto/<UTC timestamp>/`. A “sensitive service observed” line is only a review cue; it is not proof of an authorization flaw or unsafe vehicle behavior.
+
 ## Verify the install
 
 ```bash

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+project_dir="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+cd "$project_dir"
+python_bin="$project_dir/.venv/bin/python"
+if [[ ! -x "$python_bin" ]]; then
+  echo "Bounty Surface is not installed yet. Run: ./install.sh" >&2
+  exit 1
+fi
+exec "$python_bin" -m auto_surface.cli "$@"
